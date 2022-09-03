@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/search?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+    username: root
+    password:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+  redis:  #Redis数据库索引
+    database: '0'
+    host: 127.0.0.1         # Redis服务器地址
+    port: 6379              # 服务器端口号
+    password:               # Redis服务器密码（默认为空）
+    timeout: 1000           # 连接超时时间（毫秒）
+    jedis:
+      pool:
+        max-active: 200     # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10        # 连接池中的最大空闲连接
+        min-idle: 0         # 连接池中的最小空闲连接
+
+server:
+  port: 8080
+
+mybatis:
+  mapper-locations: classpath:Mapper/*.xml
+  type-aliases-package: com.xaioliu.news.Model
+
+
+
+http:
+  maxTotal: 300
+  defaultMaxPerRoute: 50
+  connectTimeout: 1000
+  connectionRequestTimeout: 500
+  socketTimeout: 5000
+  staleConnectionCheckEnabled: true
